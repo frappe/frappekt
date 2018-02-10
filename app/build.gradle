@@ -1,0 +1,69 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    def acraVersion = '5.0.0'
+    implementation "ch.acra:acra-http:$acraVersion"
+    implementation "ch.acra:acra-notification:$acraVersion"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // Android Volley
+    compile 'com.android.volley:volley:1.1.0'
+
+    // Scribe Java
+    compile 'com.github.scribejava:scribejava-apis:4.2.0'
+
+    // Anko
+    compile "org.jetbrains.anko:anko:$anko_version"
+
+    // Appcompat-v7 (only Anko Commons)
+    compile "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
+
+    // Appcompat-v7 (Anko Layouts)
+    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+    compile "org.jetbrains.anko:anko-coroutines:$anko_version"
+
+    // CardView-v7
+    compile "org.jetbrains.anko:anko-cardview-v7:$anko_version"
+
+    // Design
+    compile "org.jetbrains.anko:anko-design:$anko_version"
+    compile "org.jetbrains.anko:anko-design-coroutines:$anko_version"
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.facebook.fresco:fresco:1.8.0'
+}

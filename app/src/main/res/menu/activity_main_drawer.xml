@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_market"
+            android:icon="@drawable/ic_group_work"
+            android:title="@string/menuMarket" />
+        <item
+            android:id="@+id/nav_sellers"
+            android:icon="@drawable/ic_group"
+            android:title="@string/menuSellers" />
+        <!--<item-->
+            <!--android:id="@+id/nav_my_profile"-->
+            <!--android:icon="@drawable/ic_perm_identity"-->
+            <!--android:title="@string/menuMyProfile" />-->
+        <item
+            android:id="@+id/nav_my_produce"
+            android:icon="@drawable/ic_filter_vintage"
+            android:title="@string/menuMyProduce" />
+        <item
+            android:id="@+id/nav_invite"
+            android:icon="@drawable/ic_share"
+            android:title="@string/menuInvite" />
+    </group>
+
+    <item android:title="@string/menuGroupAdmin">
+        <menu>
+            <item
+                android:id="@+id/nav_locations"
+                android:icon="@drawable/ic_location_on"
+                android:title="@string/menuLocations" />
+            <item
+                android:id="@+id/nav_items"
+                android:icon="@drawable/ic_playlist_add"
+                android:title="@string/menuItem" />
+        </menu>
+    </item>
+
+</menu>

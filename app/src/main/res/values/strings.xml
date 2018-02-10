@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">Frappe</string>
+
+    <!--AuthenticatorActivity-->
+    <string name="please_add_account">Please add account</string>
+    <string name="please_check_mobile">Something went wrong, please check mobile number</string>
+    <string name="add_account_not_allowed">Not allowed to add new account</string>
+    <string name="check_number_or_otp">Please check OTP or tap back to try with different number</string>
+    <string name="close">Close</string>
+    <string name="connection_error">Connection Error</string>
+
+    <!-- Translateable Strings -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="support_email">foundation@erpnext.org</string>
+    <string name="menuMarket">Market</string>
+    <string name="menuSellers">Sellers</string>
+    <string name="menuMyProfile">My Profile</string>
+    <string name="menuMyProduce">My Produce</string>
+    <string name="menuInvite">Invite</string>
+    <string name="menuLocations">Locations</string>
+    <string name="menuItem">Items</string>
+    <string name="menuGroupAdmin">Admin</string>
+    <string name="textList">List</string>
+    <string name="textFilters">Filters</string>
+    <string name="tapToSignIn">Tap to Sign In</string>
+    <string name="welcome">Welcome</string>
+    <string name="tapToRefresh">Tap to Refresh</string>
+    <string name="somethingWrong">Something went wrong</string>
+    <string name="click_ok_when_enabled">Click Ok when enabled</string>
+    <string name="ok">Ok</string>
+    <string name="please_enable_net_connection">Please Enable Network Connection!</string>
+    <string name="action_search">Search</string>
+    <string name="edit_form">Edit</string>
+    <string name="save_form">Save</string>
+    <string name="acra_toast_text">Error Reported</string>
+    <string name="notification_text">Sorry, the app crashed. Please send a report to developers</string>
+    <string name="notification_title">AgriNext Crash Report</string>
+    <string name="item_type">Item Type</string>
+    <string name="last_modified_on">Last Modified On</string>
+    <string name="created_on">Created On</string>
+    <string name="most_used">Most Used</string>
+    <string name="sort_name">Name</string>
+    <string name="filters">Filters</string>
+    <string name="actionSort">Sort</string>
+    <string name="shareData">Check out AgriNext, a Central Hub to connect all farmers.</string>
+    <string name="created_by">Created By</string>
+    <string name="modified_by">Modified By</string>
+    <string name="please_set_filter">Please set filter</string>
+    <string name="labelEqual">Equal</string>
+    <string name="labelLike">Like</string>
+    <string name="labelIn">In</string>
+    <string name="labelNotIn">Not In</string>
+    <string name="labelNotEqual">Not Equal</string>
+    <string name="labelNotLike">Not Like</string>
+    <string name="labelBetween">Between</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="cancel">Cancel</string>
+    <string name="previous_photos">Previous Photos</string>
+    <string name="add_photo">Add Photo</string>
+    <string name="set_photo">Set Photo</string>
+    <string name="delete_photo">Delete Photo</string>
+    <string name="select_photo">Select Photo</string>
+
+    <!-- OAUTH -->
+    <string name="package_name">org.agrinext.agrimobile</string>
+    <string name="serverURL">https://api.agrinext.org</string>
+    <string name="oauth2Scope">35096219f0</string>
+    <string name="clientId">35096219f0</string>
+    <string name="clientSecret">secret</string>
+    <string name="redirectURI">oauth://authenticator</string>
+    <string name="allowMultipleAccounts">0</string>
+    <string name="otpSenderNumber">88793</string>
+    <string name="getOTPEndpoint">/api/method/agrinext.otp.get</string>
+    <string name="authOTPEndpoint">/api/method/agrinext.otp.authenticate</string>
+
+    <!-- AgriNext -->
+    <string name="guest_api_key">dd35bcc1e134e69e7c318c0748622d19ecf025e0ef5492ddef3f5f77</string>
+
+</resources>
