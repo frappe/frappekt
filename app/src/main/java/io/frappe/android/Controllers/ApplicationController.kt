@@ -22,9 +22,13 @@ import org.acra.config.NotificationConfigurationBuilder
 import org.acra.data.StringFormat
 import org.acra.sender.HttpSender
 import org.json.JSONObject
+import com.raizlabs.android.dbflow.config.FlowConfig
+import com.raizlabs.android.dbflow.config.FlowManager
+
+
 
 @AcraCore(buildConfigClass = BuildConfig::class)
-class ApplicationController : Application() {
+open class ApplicationController : Application() {
     internal var activityVisible = false
     lateinit var mRequestQueue: RequestQueue
     lateinit var mSerialRequestQueue: RequestQueue
@@ -40,6 +44,7 @@ class ApplicationController : Application() {
                 .setMainDiskCacheConfig(diskCacheConfig)
                 .build()
         Fresco.initialize(this, config)
+        FlowManager.init(FlowConfig.Builder(this).build())
     }
 
     override fun attachBaseContext(base: Context) {

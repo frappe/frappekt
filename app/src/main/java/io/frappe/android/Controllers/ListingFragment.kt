@@ -48,6 +48,7 @@ open class ListingFragment : Fragment(), View.OnClickListener {
     var doctype: String? = null
     var doctypeMetaJson = JSONObject()
     var swipeRefresh: SwipeRefreshLayout? = null
+    var form: Class<Any>? = null
 
     companion object {
         val DOCTYPE_META = "DOCTYPE_META"
@@ -60,7 +61,10 @@ open class ListingFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         var itemPosition = mRecyclerView.getChildLayoutPosition(view)
         var value = JSONObject(recyclerModels.get(itemPosition).toString()).get("name")
-        var intent = Intent(activity, FormGeneratorActivity::class.java)
+        if (form == null) {
+            form = FormGeneratorActivity.javaClass
+        }
+        var intent = Intent(activity, form)
         intent.putExtra("DocType", this.doctype)
         intent.putExtra("DocName", value.toString())
         startActivity(intent)
@@ -79,8 +83,6 @@ open class ListingFragment : Fragment(), View.OnClickListener {
         setupFilters()
 
         setupView()
-
-        // setupSortSpinner()
 
         setupSortOrder()
 

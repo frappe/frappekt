@@ -14,7 +14,7 @@ import io.frappe.android.UI.FormViewAdapter
 import io.frappe.android.Utils.DocField
 import io.frappe.android.Utils.FormUtils
 
-class FormGeneratorActivity : BaseCompatActivity() {
+open class FormGeneratorActivity : BaseCompatActivity() {
 
     internal lateinit var mRecyclerView: RecyclerView
     var recyclerAdapter: FormViewAdapter? = null
@@ -34,6 +34,7 @@ class FormGeneratorActivity : BaseCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        runOnCreate()
         setContentView(R.layout.activity_form)
 
         // make progress bar visible while loading data
@@ -55,6 +56,10 @@ class FormGeneratorActivity : BaseCompatActivity() {
         validateDocMeta()
 
         setupRecycler()
+    }
+
+    open fun runOnCreate() {
+
     }
 
     // Add DocField object of Meta data
