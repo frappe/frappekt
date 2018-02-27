@@ -45,7 +45,10 @@ open class ApplicationController : Application() {
                 .build()
         Fresco.initialize(this, config)
         FlowManager.init(FlowConfig.Builder(this).build())
+        runOnCreate()
     }
+
+    open fun runOnCreate() {}
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)

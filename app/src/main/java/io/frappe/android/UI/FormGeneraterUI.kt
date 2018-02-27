@@ -8,9 +8,9 @@ import io.frappe.android.Utils.DocField
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-class FormGeneraterUI(docMeta: DocField): AnkoComponent<ViewGroup> {
+class FormGeneraterUI(docField: DocField): AnkoComponent<ViewGroup> {
 
-    val docMeta = docMeta
+    val docMeta = docField
 
     override fun createView(ui: AnkoContext<ViewGroup>): View {
 
@@ -25,7 +25,7 @@ class FormGeneraterUI(docMeta: DocField): AnkoComponent<ViewGroup> {
 
                     textView {
                         id = Ids.fieldName
-                        text = "FieldName"
+                        text = docMeta.label
                         textSize = dip(7).toFloat()
                         gravity = Gravity.CENTER
                     }.lparams(width = dip(0)) {
@@ -37,7 +37,7 @@ class FormGeneraterUI(docMeta: DocField): AnkoComponent<ViewGroup> {
 
                         editText {
                             id = Ids.fieldValue
-                            setText("FieldValue")
+                            setText(docMeta.value as String)
                             textSize = dip(8).toFloat()
                             backgroundResource = android.R.color.transparent
                         }.lparams(width = dip(0)) {
@@ -57,7 +57,7 @@ class FormGeneraterUI(docMeta: DocField): AnkoComponent<ViewGroup> {
 
                         textView {
                             id = Ids.fieldValue
-                            text = "FieldName"
+                            text = docMeta.fieldname
                             textSize = dip(8).toFloat()
                         }.lparams(width = dip(0)) {
                             weight = 0.60f

@@ -3,16 +3,20 @@ package io.frappe.android.Controllers
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.*
 import android.widget.*
 import org.json.JSONObject
 import java.util.*
 import android.view.MenuItem
 import android.view.Menu
+import io.frappe.android.CallbackAsync.AuthReqCallback
+import io.frappe.android.Frappe.FrappeClient
 import io.frappe.android.R
 import io.frappe.android.UI.FormViewAdapter
 import io.frappe.android.Utils.DocField
 import io.frappe.android.Utils.FormUtils
+import org.json.JSONException
 
 open class FormGeneratorActivity : BaseCompatActivity() {
 
@@ -24,6 +28,9 @@ open class FormGeneratorActivity : BaseCompatActivity() {
     var excludeName = ArrayList<String>().apply {
         add("produce_name")
     }
+
+    var doc:JSONObject = JSONObject()
+
     lateinit var save: MenuItem
     lateinit var edit: MenuItem
 
@@ -53,14 +60,28 @@ open class FormGeneratorActivity : BaseCompatActivity() {
             FormUtils(this).fetchDoc(this.doctype!!, this.docname, "[\"*\"]", setupCallback)
         }
 
-        validateDocMeta()
+        if (this.doctype!!.isNotEmpty() && this.docname!!.isNotEmpty()){
+            val request = FrappeClient(applicationContext).get_doc(this.doctype!!, this.docname)
+            val responseCallback = object : AuthReqCallback {
+                override fun onSuccessResponse(result: String) {
+                    try {
+                        doc = JSONObject(result).getJSONObject(("data"))
+                        validateDocMeta()
+                    } catch (e:JSONException) {
+                        doc = JSONObject()
+                    }
+                }
+                override fun onErrorResponse(error: String) {
+
+                }
+            }
+            FrappeClient(applicationContext).executeRequest(request, responseCallback)
+        }
 
         setupRecycler()
     }
 
-    open fun runOnCreate() {
-
-    }
+    open fun runOnCreate() {}
 
     // Add DocField object of Meta data
     fun validateDocMeta() {
@@ -68,7 +89,9 @@ open class FormGeneratorActivity : BaseCompatActivity() {
         var pushDocMeta: DocField
 
         for (i in 0 until fields.length() - 1) {
-            pushDocMeta = DocField(fields.getJSONObject(i))
+            val value = doc.getString(fields.getJSONObject(i).getString("fieldname"))
+            Log.d("field_value", value)
+            pushDocMeta = DocField(fields.getJSONObject(i), value)
             if (pushDocMeta.fieldname != null && !excludeName.contains(pushDocMeta!!.fieldname))
                 recyclerModels.add(pushDocMeta)
         }

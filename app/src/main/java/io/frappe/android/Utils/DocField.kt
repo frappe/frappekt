@@ -3,7 +3,7 @@ package io.frappe.android.Utils
 import org.json.JSONException
 import org.json.JSONObject
 
-class DocField(fieldMeta:JSONObject) {
+class DocField(fieldMeta:JSONObject, value:Any? = null) {
 
     var reqd: Int? = null
     var read_only: Int? = null
@@ -15,6 +15,7 @@ class DocField(fieldMeta:JSONObject) {
     var options: String? = null
     var allowedFieldTypes = arrayListOf<String>()
     var allFieldTypes = arrayListOf<String>()
+    var value = value
 
     init {
         allFieldTypes = ArrayList<String>().apply {
@@ -83,7 +84,6 @@ class DocField(fieldMeta:JSONObject) {
             length = fieldMeta.getInt("length")
             hidden = fieldMeta.getInt("hidden")
             fieldname = fieldMeta.getString("fieldname")
-
             try {options = fieldMeta.getString("options") }
             catch (e: JSONException) { options = null }
 

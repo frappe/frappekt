@@ -85,6 +85,15 @@ class FrappeClient(ctx: Context){
         return frappeRequest
     }
 
+    fun get_doc(doctype: String, docname:String) : OAuthRequest {
+        val encoded_doctype = doctype.replace(" ", "%20")
+        val encoded_docname = docname.replace(" ", "%20")
+        var requestURL = getServerURL() + "/api/resource/$encoded_doctype/$encoded_docname"
+        Log.d("requestURL", requestURL)
+        val frappeRequest = OAuthRequest(Verb.GET, requestURL)
+        return frappeRequest
+    }
+
     fun checkNetworkConnection(): Boolean {
 
         return NetworkUtils.isWifiConnected(ctx) ||
