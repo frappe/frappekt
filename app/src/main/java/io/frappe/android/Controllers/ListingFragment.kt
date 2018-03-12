@@ -27,11 +27,9 @@ import io.frappe.android.UI.EndlessRecyclerViewScrollListener
 import io.frappe.android.UI.ListViewAdapter
 import io.frappe.android.Utils.StringUtil
 import kotlinx.android.synthetic.main.activity_listing.*
-import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
 import org.json.JSONException
-
 
 open class ListingFragment : Fragment(), View.OnClickListener {
 
@@ -185,7 +183,6 @@ open class ListingFragment : Fragment(), View.OnClickListener {
         if (doctype == null) {
             this.doctype = "Note"
         }
-
         val keyDocTypeMeta = StringUtil.slugify(this.doctype) + "_meta"
         var pref = activity.getSharedPreferences(DOCTYPE_META, 0)
         val editor = pref.edit()
@@ -194,14 +191,9 @@ open class ListingFragment : Fragment(), View.OnClickListener {
             this.doctypeMetaJson = JSONObject(doctypeMetaString)
             setupSortSpinner()
         } else {
-            val future = doAsync {
-                FrappeClient(activity).retrieveDocTypeMeta(editor, keyDocTypeMeta, doctype)
-            }
-
-            if (future.isDone) {
-                setupDocType()
-            }
-         }
+            FrappeClient(activity).retrieveDocTypeMeta(editor!!, keyDocTypeMeta, doctype)
+            activity.finish()
+        }
     }
 
     fun setupView() {
