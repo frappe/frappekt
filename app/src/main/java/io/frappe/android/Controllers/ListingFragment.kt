@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_listing.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.uiThread
 import org.json.JSONException
 
 
@@ -195,13 +194,14 @@ open class ListingFragment : Fragment(), View.OnClickListener {
             this.doctypeMetaJson = JSONObject(doctypeMetaString)
             setupSortSpinner()
         } else {
-            doAsync {
+            val future = doAsync {
                 FrappeClient(activity).retrieveDocTypeMeta(editor, keyDocTypeMeta, doctype)
-                uiThread {
-                    setupDocType()
-                }
             }
-        }
+
+            if (future.isDone) {
+                setupDocType()
+            }
+         }
     }
 
     fun setupView() {

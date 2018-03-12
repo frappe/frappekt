@@ -78,5 +78,6 @@
 
     <!-- AgriNext -->
     <string name="guest_api_key">dd35bcc1e134e69e7c318c0748622d19ecf025e0ef5492ddef3f5f77</string>
+    <string name="get_meta">/api/method/frappe.client.get_meta</string>
 
 </resources>
