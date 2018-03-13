@@ -27,6 +27,7 @@ import io.frappe.android.UI.EndlessRecyclerViewScrollListener
 import io.frappe.android.UI.ListViewAdapter
 import io.frappe.android.Utils.StringUtil
 import kotlinx.android.synthetic.main.activity_listing.*
+import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
 import org.json.JSONException
@@ -192,7 +193,9 @@ open class ListingFragment : Fragment(), View.OnClickListener {
             setupSortSpinner()
         } else {
             FrappeClient(activity).retrieveDocTypeMeta(editor!!, keyDocTypeMeta, doctype)
-            activity.finish()
+            val recycler_view = find<RecyclerView>(R.id.recycler_view)
+            recycler_view.visibility = View.GONE
+            toast(getString(R.string.swipe_to_refresh))
         }
     }
 
@@ -380,6 +383,8 @@ open class ListingFragment : Fragment(), View.OnClickListener {
                 SwipeRefreshLayout.OnRefreshListener {
                     recyclerModels = JSONArray()
                     mRecyclerView.adapter = null
+                    val recycler_view = find<RecyclerView>(R.id.recycler_view)
+                    recycler_view.visibility = View.VISIBLE
                     loadData(filters = filters!!)
                     setRecycleViewScrollListener()
                 }
